@@ -1,4 +1,4 @@
-# AIO Light Controller Card
+# universal socket card
 
 > Stop juggling individual light cards. Control every room's lights, effects, and colors from one beautiful collapsible card.
 
