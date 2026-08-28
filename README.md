@@ -1,11 +1,9 @@
 # universal socket card
 
-> Stop juggling individual light cards. Control every room's lights, effects, and colors from one beautiful collapsible card.
+> Stop juggling individual sockets cards. Control every room's sockets, from one beautiful collapsible card.
 
-A custom Lovelace card for Home Assistant that organizes all your lights by room into a single, elegant interface. Features live color gradients on room tiles, auto-detected brightness/temperature/color/effect support per light, collapsible room panels, individual light controls, and a fully built-in visual config editor : no YAML required.
+A custom Lovelace card for Home Assistant that organizes all your sockets by room into a single, elegant interface. 
 
-![Room grid](https://raw.githubusercontent.com/shadowsight00/aio-light-controller-card/main/assets/screenshot1.png)
-![Expanded panel](https://raw.githubusercontent.com/shadowsight00/aio-light-controller-card/main/assets/screenshot2.png)
 
 ---
 
@@ -24,22 +22,13 @@ A custom Lovelace card for Home Assistant that organizes all your lights by room
 
 ## Installation
 
-### HACS (Recommended)
-
-1. Open HACS in your Home Assistant instance
-2. Go to **Frontend**
-3. Click the **+** button and search for **AIO Light Controller Card**
-4. Click **Download**
-5. Restart Home Assistant
-6. Hard refresh your browser (Ctrl+Shift+R)
-
 ### Manual
 
-1. Download `aio-light-controller-card.js` and `aio-light-controller-card-editor.js` from the `dist/` folder
-2. Copy both files to your `/config/www/` directory
+1. Download `universal-socket-card.js` 
+2. Copy file to your `/config/www/` directory
 3. Go to **Settings → Dashboards → Resources** and add:
-   - `/local/aio-light-controller-card.js` (type: JavaScript Module)
-   - `/local/aio-light-controller-card-editor.js` (type: JavaScript Module)
+   - `/local/universal-socket-card.js` (type: JavaScript Module)
+   
 4. Hard refresh your browser
 
 ---
@@ -55,110 +44,208 @@ A custom Lovelace card for Home Assistant that organizes all your lights by room
 
 ### YAML Configuration
 
-```yaml
-type: custom:aio-light-controller-card
-title: Light Control
-columns: 3
+type: custom:universal-socket-card
+title: Socket Control
+power: sensor.electricity_meter_power_consumption
+energy:
+  - sensor.daily_energy_offpeak
+  - sensor.daily_energy_peak
+columns: 4
+glass_mode: false
 rooms:
-  - label: Living Room
+  - label: Livingroom
     icon: mdi:sofa
-    group: light.living_room
-    lights:
-      - label: Lamp 1
-        id: light.living_room_lamp_1
-      - label: Lamp 2
-        id: light.living_room_lamp_2
-    effect_targets:
-      - light.living_room_lamp_1
-      - light.living_room_lamp_2
-
+    group: ''
+    circuit_limit: 3680
+    sockets:
+      - name: Desk Main Power
+        icon: mdi:desk
+        entity: switch.livingroom_hp_g4_z4_power_switch_switch
+        power_entity: sensor.livingroom_hp_g4_z4_power_switch_power
+        id: switch.livingroom_hp_g4_z4_power_switch_switch
+        label: Desk Power Switch
+        power: sensor.livingroom_hp_g4_z4_power_switch_power
+      - name: HP-Z4 & Thinksmart
+        icon: mdi:desktop-classic
+        entity: switch.livingroom_hp_z4_thinksmart
+        power_entity: sensor.livingroom_hp_z4_thinksmart_power
+        id: switch.livingroom_hp_z4_thinksmart
+        label: Desk HP-Z4 & Thinksmart
+        power: ''
+      - name: Desk Fan
+        icon: mdi:fan
+        entity: switch.livingroom_floor_heating_light_socket_switch
+        power_entity: sensor.livingroom_floor_heating_light_socket_power
+        id: switch.livingroom_floor_heating_light_socket_switch
+        label: Desk Fan
+        power: sensor.livingroom_floor_heating_light_socket_power
+      - name: Dinner Table
+        icon: mdi:table-furniture
+        entity: switch.worktable_power
+        power_entity: sensor.worktable_power_power
+        id: switch.worktable_power
+        label: Livingroom Dining Power
+        power: sensor.worktable_power_power
   - label: Bedroom
-    icon: mdi:bed-double
-    group: light.bedroom
-    lights:
-      - label: Light 1
-        id: light.bedroom_light_1
-      - label: Light 2
-        id: light.bedroom_light_2
-
+    icon: mdi:bed
+    group: ''
+    circuit_limit: 3680
+    sockets:
+      - name: Bedside Table Main
+        icon: mdi:bed-king
+        entity: switch.spare_switch_3
+        power_entity: sensor.spare_power
+        id: switch.spare_switch_3
+        label: Table Main Power Switch
+        power: sensor.spare_power
+      - name: Heating Blanket
+        icon: mdi:heat-wave
+        entity: switch.bedroom_blanket_power
+        power_entity: sensor.bedroom_blanket_power_power
+        id: switch.bedroom_blanket_power
+        label: Bedroom Blanket Power
+        power: sensor.bedroom_blanket_power_power
   - label: Kitchen
-    icon: mdi:food
-    group: switch.kitchen_lights
-
-  - label: Office
-    icon: mdi:desktop-tower-monitor
-    group: light.office_group
-    lights:
-      - label: Ceiling
-        id: light.office_ceiling
-      - label: Hue Left
-        id: light.hue_play_left
-        effect_target: light.hue_play_left
-      - label: Hue Right
-        id: light.hue_play_right
-        effect_target: light.hue_play_right
-    effect_targets:
-      - light.office_ceiling
-      - light.hue_play_left
-      - light.hue_play_right
-```
-
----
-
-## Configuration Reference
-
-### Card Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `title` | string | `Light Control` | Header label shown above the room grid |
-| `columns` | number | `3` | Number of columns in the room tile grid |
-| `rooms` | list | required | List of room definitions |
-
-### Room Options
-
-| Option | Type | Required | Description |
-|--------|------|----------|-------------|
-| `label` | string | yes | Room display name |
-| `icon` | string | yes | MDI icon (e.g. `mdi:sofa`) |
-| `group` | string | yes | Main entity to control : a light group or `switch.*` entity |
-| `lights` | list | no | Individual lights to show inside the expanded panel |
-| `effects` | list | no | Override the auto-detected effect list for room-level effects |
-| `effect_targets` | list | no | Entity IDs to send room-level effects to. Defaults to `group` if not set. Use this for Hue or other lights that require effects sent to individual entities |
-
-### Light Options
-
-| Option | Type | Required | Description |
-|--------|------|----------|-------------|
-| `label` | string | yes | Display name for this light |
-| `id` | string | yes | Entity ID (e.g. `light.lamp_1`) |
-| `effect_target` | string | no | Override entity to send effects to for this individual light (useful for Hue Play bars) |
-
----
-
-## Notes
-
-### Philips Hue
-Hue lights (especially Play bars and gradient strips) require effects to be sent to individual light entities rather than the group. Use `effect_targets` at the room level and `effect_target` on individual lights to handle this.
-
-### Switches
-If your `group` entity is a `switch.*`, the card will show a simple on/off toggle with no sliders or effects.
-
-### Individual Lights Section
-If a room has only one light and it matches the group entity, you don't need to add it to the `lights` list : the room-level sliders already control it. Add lights to the list only when you want per-light control.
-
-### Effects Auto-Detection
-Effects are read directly from each light entity's `effect_list` attribute in real time. No configuration needed. If no effects appear, make sure the light is turned on and supports effects.
-
----
-
-## Support
-
-- [Open an issue](https://github.com/shadowsight00/aio-light-controller-card/issues)
-- [Home Assistant Community Forum](https://community.home-assistant.io)
-
----
-
-## License
-
-MIT License : see [LICENSE](LICENSE) for details.
+    icon: mdi:silverware-clean
+    group: ''
+    circuit_limit: 3680
+    sockets:
+      - name: Microwave
+        icon: mdi:microwave
+        entity: switch.kitchen_microwave_power_switch_switch
+        power_entity: sensor.kitchen_microwave_power_switch_power
+        id: switch.kitchen_microwave_power_switch_switch
+        label: 'Microwave '
+        power: sensor.kitchen_microwave_power_switch_power
+      - name: Espresso & Grinder
+        icon: mdi:coffee-maker
+        entity: switch.kitchen_coffee_grinder_power_switch_switch
+        power_entity: sensor.kitchen_coffee_grinder_power_switch_power
+        id: switch.kitchen_coffee_grinder_power_switch_switch
+        label: Kitchen Coffee & Grinder Power Switch
+        power: sensor.kitchen_coffee_grinder_power_switch_power
+      - name: Blender
+        icon: mdi:blender
+        entity: switch.kitchen_breadmachine_switch
+        power_entity: sensor.kitchen_breadmachine_power
+        id: switch.kitchen_breadmachine_switch
+        label: Blender
+        power: sensor.kitchen_breadmachine_power
+      - name: Washing Machine
+        icon: mdi:washing-machine
+        entity: switch.lumi_lumi_plug_maeu01_switch
+        power_entity: sensor.kitchen_washing_machine_power
+        id: switch.lumi_lumi_plug_maeu01_switch
+        label: Washing machine
+        power: sensor.kitchen_washing_machine_power
+      - name: Ninja Oven
+        icon: mdi:toaster-oven
+        entity: switch.kitchen_ninja_oven_switch
+        power_entity: sensor.kitchen_ninja_oven_power
+        id: switch.kitchen_ninja_oven_switch
+        label: 'Ninja Oven '
+        power: sensor.kitchen_ninja_oven_power
+      - name: Multicooker & Bread
+        icon: mdi:pot-steam
+        entity: switch.kitchen_multicooker_switch
+        power_entity: sensor.kitchen_multicooker_power
+        id: switch.kitchen_multicooker_switch
+        label: Multicooker & Bread
+        power: sensor.kitchen_multicooker_power
+      - name: Freezer
+        icon: mdi:snowflake-thermometer
+        entity: switch.stockroom_freezer_power_switch_switch
+        power_entity: sensor.stockroom_freezer_power_switch_power
+        id: switch.stockroom_freezer_power_switch_switch
+        label: 'Freezer '
+        power: sensor.stockroom_freezer_power_switch_power
+      - name: Fridge
+        icon: mdi:fridge-industrial-outline
+        entity: switch.lumi_lumi_plug_maeu01_switch_2
+        power_entity: sensor.lumi_lumi_plug_maeu01_active_power_2
+        id: switch.lumi_lumi_plug_maeu01_switch_2
+        label: Kitchen Fridge Power Switch
+        power: sensor.lumi_lumi_plug_maeu01_active_power_2
+  - label: Stockroom
+    icon: mdi:warehouse
+    group: ''
+    circuit_limit: 3680
+    sockets:
+      - name: Video Doorbell
+        icon: mdi:cctv
+        entity: switch.stockroom_camera_switch
+        power_entity: sensor.stockroom_camera_power
+        id: switch.stockroom_camera_switch
+        label: 'Doorbell Camera '
+        power: sensor.stockroom_camera_power
+      - name: Soldering Station
+        icon: mdi:soldering-iron
+        entity: switch.livingroom_desk_charger_2
+        power_entity: sensor.livingroom_desk_charger_power_2
+        id: switch.kitchen_dasboard_tablet
+        label: Tablet
+        power: sensor.kitchen_dasboard_tablet_power
+      - name: Paper Shredder
+        icon: mdi:paper-roll
+        entity: switch.livingroom_wall_led_strip_power_switch
+        power_entity: sensor.livingroom_wall_led_strip_power_power
+        id: switch.livingroom_desk_charger_2
+        label: Soldering Station
+        power: sensor.livingroom_desk_charger_power_2
+      - name: Light
+        icon: mdi:light-flood-down
+        entity: >-
+          switch.livingroom_stockroom_light_power_livingroom_hp_g4_thinksmart_power_switch
+        power: sensor.livingroom_wall_led_strip_power_power
+        id: switch.livingroom_wall_led_strip_power_switch
+        label: 'Papercutter '
+      - label: Stockroom
+        id: >-
+          switch.livingroom_stockroom_light_power_livingroom_hp_g4_thinksmart_power_switch
+        power: ''
+        energy: ''
+        rated: 1000
+card_mod:
+  style: |
+    .wrap {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+    .title,
+    .hint {
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .grid {
+      gap: 6px !important;
+    }
+    .tile {
+      background: rgba(0, 0, 0, 0.35) !important;
+      border-radius: 14px !important;
+      border: none !important;
+      box-shadow: none !important;
+      min-height: 100px !important;
+      padding: 8px 4px !important;
+      gap: 3px !important;
+      backdrop-filter: none !important;
+    }
+    .tile ha-icon {
+      --mdc-icon-size: 30px !important;
+      color: rgba(255,255,255,0.9) !important;
+    }
+    .tile-name {
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      color: rgba(255,255,255,0.85) !important;
+      margin: 0 !important;
+    }
+    .tile-watts {
+      color: rgba(255,255,255,0.75) !important;
+      opacity: 1 !important;
+    }
+    .tile.active {
+      border: 1px solid var(--primary-color, #ff9f09) !important;
+      box-shadow: 0 0 6px rgba(255, 159, 9, 0.25) !important;
+    }
