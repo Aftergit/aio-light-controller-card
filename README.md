@@ -10,12 +10,9 @@ A custom Lovelace card for Home Assistant that organizes all your sockets by roo
 ## Features
 
 - **Room tiles with live gradients** : each tile reflects the actual color(s) of your lights in real time
-- **Auto-detection** : brightness, color temperature, color, and effects are detected automatically from each light's HA attributes. No manual configuration needed
 - **Collapsible room panels** : tap a room to expand its controls, tap again to collapse
-- **Individual light controls** : per-light brightness, temperature, color sliders and effects, expandable inline
-- **Effects support** : room-level and per-light effects with scrollable overflow for large effect lists
+- **Individual sockets ** : 
 - **Visual config editor** : full UI editor with icon picker, entity dropdowns, and auto-filled labels. No YAML required
-- **Works with any light brand** : Govee, Philips Hue, IKEA, Sengled, Zigbee, Z-Wave, and more
 - **Switch support** : kitchen or other switch-controlled lights work as simple on/off tiles
 
 ---
