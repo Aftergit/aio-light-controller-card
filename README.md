@@ -61,31 +61,31 @@ rooms:
       - name: Desk Main Power
         icon: mdi:desk
         entity: switch.livingroom_hp_g4_z4_power_switch_switch
-        power_entity: sensor.livingroom_hp_g4_z4_power_switch_power
-        id: switch.livingroom_hp_g4_z4_power_switch_switch
+        power_entity: sensor.l
+        id: switch.l
         label: Desk Power Switch
-        power: sensor.livingroom_hp_g4_z4_power_switch_power
+        power: sensor.
       - name: HP-Z4 & Thinksmart
         icon: mdi:desktop-classic
-        entity: switch.livingroom_hp_z4_thinksmart
-        power_entity: sensor.livingroom_hp_z4_thinksmart_power
-        id: switch.livingroom_hp_z4_thinksmart
+        entity: switch.
+        power_entity: sensor.
+        id: switch.l
         label: Desk HP-Z4 & Thinksmart
         power: ''
       - name: Desk Fan
         icon: mdi:fan
-        entity: switch.livingroom_floor_heating_light_socket_switch
-        power_entity: sensor.livingroom_floor_heating_light_socket_power
-        id: switch.livingroom_floor_heating_light_socket_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Desk Fan
-        power: sensor.livingroom_floor_heating_light_socket_power
+        power: sensor.
       - name: Dinner Table
         icon: mdi:table-furniture
-        entity: switch.worktable_power
-        power_entity: sensor.worktable_power_power
-        id: switch.worktable_power
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Livingroom Dining Power
-        power: sensor.worktable_power_power
+        power: sensor.
   - label: Bedroom
     icon: mdi:bed
     group: ''
@@ -93,18 +93,18 @@ rooms:
     sockets:
       - name: Bedside Table Main
         icon: mdi:bed-king
-        entity: switch.spare_switch_3
-        power_entity: sensor.spare_power
-        id: switch.spare_switch_3
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Table Main Power Switch
-        power: sensor.spare_power
+        power: sensor.
       - name: Heating Blanket
         icon: mdi:heat-wave
-        entity: switch.bedroom_blanket_power
-        power_entity: sensor.bedroom_blanket_power_power
-        id: switch.bedroom_blanket_power
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Bedroom Blanket Power
-        power: sensor.bedroom_blanket_power_power
+        power: sensor.
   - label: Kitchen
     icon: mdi:silverware-clean
     group: ''
@@ -112,60 +112,60 @@ rooms:
     sockets:
       - name: Microwave
         icon: mdi:microwave
-        entity: switch.kitchen_microwave_power_switch_switch
-        power_entity: sensor.kitchen_microwave_power_switch_power
-        id: switch.kitchen_microwave_power_switch_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: 'Microwave '
-        power: sensor.kitchen_microwave_power_switch_power
+        power: sensor.
       - name: Espresso & Grinder
         icon: mdi:coffee-maker
-        entity: switch.kitchen_coffee_grinder_power_switch_switch
-        power_entity: sensor.kitchen_coffee_grinder_power_switch_power
-        id: switch.kitchen_coffee_grinder_power_switch_switch
-        label: Kitchen Coffee & Grinder Power Switch
-        power: sensor.kitchen_coffee_grinder_power_switch_power
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
+        label: Kitchen Coffee & Grinder 
+        power: sensor.
       - name: Blender
         icon: mdi:blender
-        entity: switch.kitchen_breadmachine_switch
-        power_entity: sensor.kitchen_breadmachine_power
-        id: switch.kitchen_breadmachine_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Blender
-        power: sensor.kitchen_breadmachine_power
+        power: sensor.
       - name: Washing Machine
         icon: mdi:washing-machine
-        entity: switch.lumi_lumi_plug_maeu01_switch
-        power_entity: sensor.kitchen_washing_machine_power
-        id: switch.lumi_lumi_plug_maeu01_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Washing machine
-        power: sensor.kitchen_washing_machine_power
+        power: sensor.
       - name: Ninja Oven
         icon: mdi:toaster-oven
-        entity: switch.kitchen_ninja_oven_switch
-        power_entity: sensor.kitchen_ninja_oven_power
-        id: switch.kitchen_ninja_oven_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: 'Ninja Oven '
-        power: sensor.kitchen_ninja_oven_power
+        power: sensor.
       - name: Multicooker & Bread
         icon: mdi:pot-steam
-        entity: switch.kitchen_multicooker_switch
-        power_entity: sensor.kitchen_multicooker_power
-        id: switch.kitchen_multicooker_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Multicooker & Bread
-        power: sensor.kitchen_multicooker_power
+        power: sensor.
       - name: Freezer
         icon: mdi:snowflake-thermometer
-        entity: switch.stockroom_freezer_power_switch_switch
-        power_entity: sensor.stockroom_freezer_power_switch_power
-        id: switch.stockroom_freezer_power_switch_switch
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: 'Freezer '
-        power: sensor.stockroom_freezer_power_switch_power
+        power: sensor.
       - name: Fridge
         icon: mdi:fridge-industrial-outline
-        entity: switch.lumi_lumi_plug_maeu01_switch_2
-        power_entity: sensor.lumi_lumi_plug_maeu01_active_power_2
-        id: switch.lumi_lumi_plug_maeu01_switch_2
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Kitchen Fridge Power Switch
-        power: sensor.lumi_lumi_plug_maeu01_active_power_2
+        power: sensor.
   - label: Stockroom
     icon: mdi:warehouse
     group: ''
@@ -173,35 +173,35 @@ rooms:
     sockets:
       - name: Video Doorbell
         icon: mdi:cctv
-        entity: switch.stockroom_camera_switch
-        power_entity: sensor.stockroom_camera_power
+        entity: switch.
+        power_entity: sensor.
         id: switch.stockroom_camera_switch
         label: 'Doorbell Camera '
-        power: sensor.stockroom_camera_power
+        power: sensor.
       - name: Soldering Station
         icon: mdi:soldering-iron
-        entity: switch.livingroom_desk_charger_2
-        power_entity: sensor.livingroom_desk_charger_power_2
+        entity: switch.
+        power_entity: sensor.
         id: switch.kitchen_dasboard_tablet
         label: Tablet
-        power: sensor.kitchen_dasboard_tablet_power
+        power: sensor.
       - name: Paper Shredder
         icon: mdi:paper-roll
-        entity: switch.livingroom_wall_led_strip_power_switch
-        power_entity: sensor.livingroom_wall_led_strip_power_power
-        id: switch.livingroom_desk_charger_2
+        entity: switch.
+        power_entity: sensor.
+        id: switch.
         label: Soldering Station
-        power: sensor.livingroom_desk_charger_power_2
+        power: sensor.
       - name: Light
         icon: mdi:light-flood-down
         entity: >-
-          switch.livingroom_stockroom_light_power_livingroom_hp_g4_thinksmart_power_switch
-        power: sensor.livingroom_wall_led_strip_power_power
-        id: switch.livingroom_wall_led_strip_power_switch
+          switch.
+        power: sensor.
+        id: switch.
         label: 'Papercutter '
       - label: Stockroom
         id: >-
-          switch.livingroom_stockroom_light_power_livingroom_hp_g4_thinksmart_power_switch
+          switch.
         power: ''
         energy: ''
         rated: 1000
