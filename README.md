@@ -60,7 +60,7 @@ rooms:
     sockets:
       - name: Desk Main Power
         icon: mdi:desk
-        entity: switch.livingroom_hp_g4_z4_power_switch_switch
+        entity: switch.
         power_entity: sensor.l
         id: switch.l
         label: Desk Power Switch
