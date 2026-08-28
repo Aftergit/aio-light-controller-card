@@ -1,3 +1,8 @@
+Based on AIO Light Controller Card by shadowsight00
+https://github.com/shadowsight00/aio-light-controller-card
+
+Adapted for sockets with help from Grok (xAI).
+
 # universal socket card
 
 > Stop juggling individual sockets cards. Control every room's sockets, from one beautiful collapsible card.
